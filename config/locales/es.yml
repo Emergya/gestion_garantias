@@ -77,3 +77,8 @@ es:
       priority: "Prioridad"
       description: "Descripción"
       new: "Añadir nuevo ANS"
+      confirm_delete: "¿Desea eliminar este ANS?"
+      notice_destroy: "ANS eliminado correctamente."
+
+      error:
+          action_destroy: "Error al intentar eliminar el ANS."
