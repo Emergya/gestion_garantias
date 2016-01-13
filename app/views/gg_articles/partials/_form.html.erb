@@ -1,0 +1,101 @@
+<div id="prueba">
+<%= csrf_meta_tag %>
+<% content_for :header_tags do %>
+	<%= javascript_include_tag "gg_articles.js", :plugin => 'gestion_garantias' %>
+   <%= stylesheet_link_tag "/gg_articles.css", :plugin => 'gestion_garantias', :media => "screen" %>
+<% end %>
+
+<%= form_for [@project, @file, @article] do |f| %>
+<div class="splitcontentleft articles_form_left">
+	<h2><%= l(:"file.file") %></h2>
+		<table class="list">
+	<thead>
+	<tr>
+	   <th><%= l(:"file.code_file") %></th>
+	</tr>
+	</thead>
+		<tbody>
+			 <tr class="<%= cycle("odd", "even") %>">
+			 	<td><%= @file.code_file %></td>
+			 </tr>
+		</tbody>
+	</table>
+
+	<h2><%= l(:"article.article") %></h2>
+		<%= f.hidden_field :gg_file_id, :value => @file.id %>
+
+		<div><%= f.label l(:"article.code_article")+": " %></div>
+		<%= f.text_field(:code_article, :size => 30) %>
+		
+		<div><%= f.label l(:"article.name_provider")+": " %></div>
+		<%= f.text_field(:name_provider, :size => 30) %>
+
+		<div><%= f.label l(:"article.guarantee_start")+": " %></div>
+		<%= f.text_field(:guarantee_start, :size => 8, :value => @article.guarantee_start.nil? ? "" : @article.guarantee_start.strftime("%d-%m-%Y")) %>
+		<%= calendar_for_es('gg_article_guarantee_start')%>
+
+		<div><%= f.label l(:"article.guarantee_end")+": " %></div>
+		<%= f.text_field(:guarantee_end, :size => 8, :value => @article.guarantee_end.nil? ? "" : @article.guarantee_end.strftime("%d-%m-%Y")) %>
+		<%= calendar_for_es('gg_article_guarantee_end')%>
+
+		<% if !@message.nil? %>
+			<div class="flash <%= @message[:type] %> message_guarantee" id="flash_<%= @message[:type] %>"><%= @message[:value] %></div>
+		<% end %>
+</div>	
+
+<div class="splitcontentright articles_form_right">
+	<fieldset class="f_contacts">
+		<legend><h2><%= l(:"contact.contacts") %></h2></legend>
+		<% (0..2).each do |i| %>
+			<%= f.fields_for :gg_contacts, @contacts[i] do |j| %>
+				<fieldset class="f_level">
+					<legend> <%= l(:"contact.level") %> <%= i+1 %></legend>
+					<%= j.hidden_field :level, :value => i+1 %>
+
+					<div class="div_contact">
+						<p class="l_contact"><%= j.label l(:"contact.name")+": " %></p>
+						<%= j.text_field(:name, :size => 30) %>
+					</div>
+					<div class="div_contact_phone">
+						<p class="l_contact"><%= j.label l(:"contact.phone")+": " %></p>
+						<%= j.text_field(:phone, :size => 9) %>
+					</div>
+
+					<div class="div_contact">
+						<p class="l_contact"><%= j.label l(:"contact.email")+": " %></p>
+						<%= j.text_field(:email, :size => 30) %>
+					</div>
+				</fieldset>
+			<% end %>
+		<% end %>
+	</fieldset>
+</div>
+	
+	<div style="clear: both"></div>
+	
+	<fieldset>
+		<legend><h2><%= f.label l(:"ans.ans_description") %></h2></legend>
+		<% (0...@count_ans).each do |i| %>
+			<%= f.fields_for :gg_ans, @ans[i] do |j| %>
+
+				<fieldset class="f_ans field_for_ans_<%= i %>">
+				<p class="l_ans"><%= j.label l(:"ans.priority")+": " %></p>
+				<%= j.text_field(:priority, :class => "t_ans") %>
+				<p class="l_ans"><%= j.label l(:"ans.description")+": " %></p>
+				<%= j.text_area(:description, :class => "t_ans", :rows => 7) %>
+				</fieldset>
+
+			<% end %>
+		<% end %>
+
+		<div class="contextual btn_add_ans">
+		    <a><span class="icon icon-add add_ans" data-count="<%= @count_ans %>"><%= l(:"ans.new") %></span></a>
+		</div>
+	</fieldset>
+
+	<div>
+	<%= f.submit l(:"text_save"), style: "float: left;", class: "form_articles_button" %>
+	</div>
+<% end %>
+<%= button_to l(:"text_back"), edit_project_gg_file_path(@file, :project_id => @project), class: "form_articles_button form_articles_button_back", :method => :get %>
+</div>

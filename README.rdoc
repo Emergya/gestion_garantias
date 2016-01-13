@@ -1,0 +1,3 @@
+= Gestión de garantías
+
+Plugin de Redmine para almacenar los datos de los servicios técnicos en cada expediente adjudicado por la Agencia de Educación.

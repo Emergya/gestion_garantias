@@ -1,0 +1,36 @@
+<%= render "gg_files/partials/form" %>
+
+<div class="contextual">
+  <%= link_to '<span class="icon icon-add">'.html_safe+l(:"article.new"), new_project_gg_file_gg_article_path(@file, :project_id => @project ) %>
+</div>
+
+<h2><%= l(:"article.articles") %></h2>
+<table class="list">
+<thead>
+<tr>
+   <th><%= l(:"article.code_article") %></th>
+   <th><%= l(:"article.name_provider") %></th>
+   <th><%= l(:"article.guarantee_start") %></th>
+   <th><%= l(:"article.guarantee_end") %></th>
+   <th><%= l(:"ans.ans") %></th>
+   <th><%= l(:"article.permissions") %></th>
+
+</tr>
+</thead>
+<tbody>
+	<% @articles.each do |article| %>
+    <tr class="<%= cycle("odd", "even") %>">
+    	<td><%= link_to article.code_article, edit_project_gg_file_gg_article_path(@file, article, :project_id => @project) %></td>
+    	<td><%= article.name_provider %></td>
+    	<td><%= article.guarantee_start %> </td>
+      <td><%= article.guarantee_end %> </td>
+    	<td>Consultar</td>
+    	<td>
+    		<%= link_to '<span class="icon icon-edit">'.html_safe+l(:text_edit), edit_project_gg_file_gg_article_path(@file, article, :project_id => @project) %>
+        <%= link_to '<span class="icon icon-copy">'.html_safe+l(:text_copy), copy_project_gg_file_gg_article_path(@file, article, :project_id => @project) %>
+        <%= link_to '<span class="icon icon-del">'.html_safe+l(:text_delete), project_gg_file_gg_article_path(@file,article, :project_id => @project), :confirm => "¿Desea eliminar este artículo?", :method => :delete %>
+    	</td>
+    </tr>
+    <% end %>
+</tbody>
+</table>

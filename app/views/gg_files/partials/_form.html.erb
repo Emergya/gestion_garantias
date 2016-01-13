@@ -1,0 +1,18 @@
+<%= csrf_meta_tag %>
+<% content_for :header_tags do %>
+   <%= stylesheet_link_tag "/gg_files.css", :plugin => 'gestion_garantias', :media => "screen" %>
+<% end %>
+
+<h2><%= l(:"file.file") %></h2>
+<%= form_for [@project, @file] do |f| %>
+	<div><%= f.label l(:"file.identity_file")+": " %></div>
+	<%= f.text_field(:identity_file, :size => 30) %>
+	
+	<div><%= f.label l(:"file.code_file")+": " %></div>
+	<%= f.text_field(:code_file, :size => 30) %>
+
+	<div>
+	<%= f.submit l(:"text_save"), style: "float: left;", class: "form_files_button" %>
+	</div>
+<% end %>
+<%= button_to l(:"text_back"), project_gg_home_path(:project_id => @project), class: "form_files_button form_files_button_back" %>

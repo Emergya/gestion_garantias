@@ -1,0 +1,30 @@
+<div class="contextual">
+    <%= link_to '<span class="icon icon-add">'.html_safe+l(:"file.new"), :controller => :gg_files, :action => :new, :project_id => @project %>
+</div>
+<h2><%= l(:"file.files") %></h2>
+
+<table class="list">
+<thead>
+<tr>
+   <th><%= l(:"file.identity_file") %></th>
+   <th><%= l(:"file.code_file") %></th>
+   <th><%= l(:"file.n_providers") %></th>
+   <th><%= l(:"file.n_articles") %></th>
+   <th><%= l(:"file.permissions") %></th>
+</tr>
+</thead>
+<tbody>
+  <% @files.each do |file| %>
+    <tr class="<%= cycle("odd", "even") %>">
+     <td><%= file.identity_file %></td>
+     <td><%= link_to file.code_file, edit_project_gg_file_path(file, :project_id => @project) %></td>
+     <td><%= file.gg_articles.select(:name_provider).uniq.count %></td>
+     <td><%= file.gg_articles.count %></td>
+     <td>
+        <%= link_to '<span class="icon icon-edit">'.html_safe+l(:text_edit), edit_project_gg_file_path(file, :project_id => @project) %>
+        <%= link_to '<span class="icon icon-del">'.html_safe+l(:text_delete), project_gg_file_path(file, :project_id => @project), :confirm => l(:"file.confirm_delete"), :method => :delete %>
+     </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
