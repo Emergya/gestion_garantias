@@ -57,7 +57,7 @@
 }
 
 .f_ans{
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 	background-color: rgba(98,141,182,0.1);
 }
 
@@ -67,4 +67,24 @@
 
 .message_guarantee{
 	width: 220px;
+}
+
+.delete_ans{
+	float: right;
+	margin-right: 7px;
+	margin-top: 3px;
+}
+
+a.delete_ans{
+	cursor: pointer;
+}
+
+.delete_ans_rails{
+	float: right;
+	margin-right: 7px;
+	margin-top: 3px;
+}
+
+.delete_text{
+	padding-top: 5px !important;
 }

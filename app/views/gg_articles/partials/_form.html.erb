@@ -83,7 +83,7 @@
 				<%= j.text_field(:priority, :class => "t_ans") %>
 				<p class="l_ans"><%= j.label l(:"ans.description")+": " %></p>
 				<%= j.text_area(:description, :class => "t_ans", :rows => 7) %>
-				<%= link_to '<span class="icon icon-del">'.html_safe+l(:text_delete), project_gg_file_gg_article_gg_an_path(@file,@article,@ans[i], :project_id => @project), :confirm => "¿Desea eliminar este artículo?", :method => :delete %>
+				<%= link_to '<span class="icon icon-del detele_text">'.html_safe+l(:text_delete), project_gg_file_gg_article_gg_an_path(@file,@article,@ans[i], :project_id => @project), :confirm => "¿Desea eliminar este artículo?", :method => :delete, class: "delete_ans_rails" %>
 				</fieldset>
 
 			<% end %>
