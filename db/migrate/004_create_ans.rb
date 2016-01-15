@@ -3,7 +3,7 @@ class CreateAns < ActiveRecord::Migration
     create_table :gg_ans do |t|
     	t.column :gg_article_id, :integer
     	t.column :priority, :string
-    	t.column :description, :string
+    	t.column :description, :text
     end
   end
 

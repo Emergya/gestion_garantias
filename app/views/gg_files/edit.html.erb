@@ -1,3 +1,9 @@
+<%= csrf_meta_tag %>
+<% content_for :header_tags do %>
+  <%= javascript_include_tag "gg_files.js", :plugin => 'gestion_garantias' %>
+  <%= stylesheet_link_tag "/gg_files.css", :plugin => 'gestion_garantias', :media => "screen" %>
+<% end %>
+
 <%= render "gg_files/partials/form" %>
 
 <div class="contextual">
@@ -19,18 +25,35 @@
 </thead>
 <tbody>
 	<% @articles.each do |article| %>
-    <tr class="<%= cycle("odd", "even") %>">
+    <tr class="<%= cycle("odd", "even") %> tooltip_contacts" title="<hr><%= article.show_contacts %>">
     	<td><%= link_to article.code_article, edit_project_gg_file_gg_article_path(@file, article, :project_id => @project) %></td>
     	<td><%= article.name_provider %></td>
     	<td><%= article.guarantee_start %> </td>
       <td><%= article.guarantee_end %> </td>
-    	<td>Consultar</td>
+    	<td><a href="#" class="button_ans" data-id="<%= article.id %>">Consultar</a></td>
     	<td>
     		<%= link_to '<span class="icon icon-edit">'.html_safe+l(:text_edit), edit_project_gg_file_gg_article_path(@file, article, :project_id => @project) %>
         <%= link_to '<span class="icon icon-copy">'.html_safe+l(:text_copy), copy_project_gg_file_gg_article_path(@file, article, :project_id => @project) %>
         <%= link_to '<span class="icon icon-del">'.html_safe+l(:text_delete), project_gg_file_gg_article_path(@file,article, :project_id => @project), :confirm => "¿Desea eliminar este artículo?", :method => :delete %>
-    	</td>
+      </td>
+      <div class="dialog_ans dialog_ans_<%= article.id.to_s %>" title="ANS">
+
+          <% if !@result_ans[article.id].nil? %>
+            <hr>
+            <% @result_ans[article.id].each do |ans| %>
+              <p class="dialog_ans_title">Prioridad:</p>
+              <p><%= ans[:priority] %></p>
+              <p class="dialog_ans_title">Descripción:</p>
+              <p><%= ans[:description] %><p>
+            <hr>
+            <% end %> 
+          <% else %>
+            No existe ningún ANS para este artículo.
+          <% end %>
+          
+      <div>
     </tr>
     <% end %>
 </tbody>
 </table>
+

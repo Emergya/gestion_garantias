@@ -20,7 +20,6 @@ $(document).ready(function(){
 	});
 
 	$(document).on('click', '.delete_ans', function(){
-		console.log("PRUEBA ENTRO");
 		i = $(".delete_ans").data("count");
 		$(".field_for_ans_"+i).remove();
 	});

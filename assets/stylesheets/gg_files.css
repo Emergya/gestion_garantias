@@ -6,3 +6,17 @@
 .form_files_button_back{
 	margin-left: 5px;
 }
+
+.dialog_ans{
+	overflow: scroll;
+}
+
+.dialog_ans_title{
+	font-weight: bold;
+	text-align: justify;
+	margin-bottom: -10px;
+}
+
+.contact_tooltip{
+	max-width: 1000px !important;
+}

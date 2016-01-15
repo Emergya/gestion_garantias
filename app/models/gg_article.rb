@@ -31,6 +31,10 @@ class GgArticle < ActiveRecord::Base
     error_msg
   end
 
+  def show_contacts
+    self.gg_contacts.reject{|c| c.name.empty?}.collect{|c| "<b>"+c.name+"</b> <i>"+c.email+"</i> | "+c.phone+" | <hr>"}.join('')
+  end
+
   private
   # Valida que el código de articulo no se encuentre vacío.
   def code_article_is_blank
