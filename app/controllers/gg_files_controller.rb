@@ -28,6 +28,16 @@ class GgFilesController < ApplicationController
 
   def edit
     @articles = @file.gg_articles.order("code_article ASC")
+
+    # Recoge los ANS de cada uno de los artículos para mostrarlos a través del dialog (ventana modal).
+    @result_ans = {}
+    @articles.each do |article|
+      @ans = article.gg_ans
+      @result_ans[article.id] = []
+      @ans.each do |ans|
+        @result_ans[article.id] << {:ans_id => ans.id, :priority => ans.priority, :description => ans.description}
+      end
+    end
   end
 
   def update 
