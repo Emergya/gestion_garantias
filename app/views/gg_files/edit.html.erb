@@ -5,11 +5,11 @@
 <% end %>
 
 <%= render "gg_files/partials/form" %>
-
+<!-- OCULTADO el boton de crear nuevos artículos
 <div class="contextual">
-  <%= link_to '<span class="icon icon-add">'.html_safe+l(:"article.new"), new_project_gg_file_gg_article_path(@file, :project_id => @project ) %>
+  <%# link_to '<span class="icon icon-add">'.html_safe+l(:"article.new"), new_project_gg_file_gg_article_path(@file, :project_id => @project ) %>
 </div>
-
+-->
 <h2><%= l(:"article.articles") %></h2>
 <table class="list">
 <thead>
