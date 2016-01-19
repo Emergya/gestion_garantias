@@ -5,19 +5,21 @@
 <% end %>
 
 <%= render "gg_files/partials/form" %>
-
+<!-- OCULTADO el boton de crear nuevos artículos
 <div class="contextual">
-  <%= link_to '<span class="icon icon-add">'.html_safe+l(:"article.new"), new_project_gg_file_gg_article_path(@file, :project_id => @project ) %>
+  <%# link_to '<span class="icon icon-add">'.html_safe+l(:"article.new"), new_project_gg_file_gg_article_path(@file, :project_id => @project ) %>
 </div>
-
+-->
 <h2><%= l(:"article.articles") %></h2>
 <table class="list">
 <thead>
 <tr>
    <th><%= l(:"article.code_article") %></th>
    <th><%= l(:"article.name_provider") %></th>
-   <th><%= l(:"article.guarantee_start") %></th>
-   <th><%= l(:"article.guarantee_end") %></th>
+   <!-- OCULTADO los campos de fecha de inicio y de fin de la garantia
+   <th><%# l(:"article.guarantee_start") %></th>
+   <th><%# l(:"article.guarantee_end") %></th>
+    -->
    <th><%= l(:"ans.ans") %></th>
    <th><%= l(:"article.permissions") %></th>
 
@@ -28,8 +30,10 @@
     <tr class="<%= cycle("odd", "even") %> tooltip_contacts" title="<hr><%= article.show_contacts %>">
     	<td><%= link_to article.code_article, edit_project_gg_file_gg_article_path(@file, article, :project_id => @project) %></td>
     	<td><%= article.name_provider %></td>
-    	<td><%= article.guarantee_start %> </td>
-      <td><%= article.guarantee_end %> </td>
+    	<!-- OCULTADO los campos de fecha de inicio y de fin de la garantia
+      <td><%# article.guarantee_start %> </td>
+      <td><%# article.guarantee_end %> </td>
+      -->
     	<td><a href="#" class="button_ans" data-id="<%= article.id %>">Consultar</a></td>
     	<td>
     		<%= link_to '<span class="icon icon-edit">'.html_safe+l(:text_edit), edit_project_gg_file_gg_article_path(@file, article, :project_id => @project) %>
