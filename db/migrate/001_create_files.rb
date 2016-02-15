@@ -1,8 +1,8 @@
 class CreateFiles < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :gg_files do |t|
-        t.column :identity_file, :integer
-        t.column :code_file, :string
+      t.column :identity_file, :integer
+      t.column :code_file, :string
     end
   end
 

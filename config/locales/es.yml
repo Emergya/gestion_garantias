@@ -23,16 +23,17 @@ es:
       confirm_delete: "¿Desea eliminar este expediente?"
       error:
           action_destroy: "Error al intentar eliminar el expediente."
-          validation_indentity_file_blank: "El identificador del expediente debe de introducirse."
+          validation_indentity_file_blank: "El identificador del expediente no puede estar vacío."
           validation_identity_file_number: "El identificador del expediente debe de ser un número entero."
           validation_identity_file_unique: "El identificador del expediente se encuentra en otro expediente."
-          validation_code_file_blank: "El código del expediente debe de introducirse."
+          validation_code_file_blank: "El código del expediente no puede estar vacío."
 
   article:
       article: "Artículo"
       articles: "Artículos"
       new: "Nuevo artículo"
       code_article: "Código de artículo"
+      code_provider: "Código del proveedor"
       name_provider: "Nombre del proveedor"
       guarantee_start: "Inicio de garantía"
       guarantee_end: "Fin de garantía"
@@ -46,13 +47,10 @@ es:
       message_guarantee_out: "No se encuentra en garantia"
       error:
           action_destroy: "Error al intentar eliminar el artículo."
-          validation_code_article_blank: "El código del artículo debe de introducirse."
+          validation_code_article_blank: "El código del artículo no puede estar vacío."
           validation_code_article_number: "El código de artículo debe de ser un número."
-          validation_name_provider_blank: "El nombre del proveedor debe introducirse."
-          # validation_guarantee_blank: "El tiempo de garantía debe introducirse."
-          # validation_guarantee_number: "El tiempo de garantía debe de ser un número entero."
-          # validation_ans_blank: "El tiempo de ANS debe introducirse."
-          # validation_ans_number: "El tiempo de ANS deve de ser un número entero."
+          validation_code_provider_blank: "El código del proveedor no puede estar vacío."
+          validation_name_provider_blank: "El nombre del proveedor no puede estar vacío."
 
   contact:
       contacts: "Contactos"

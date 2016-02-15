@@ -8,13 +8,9 @@ class GgArticle < ActiveRecord::Base
   accepts_nested_attributes_for :gg_ans
 
   validates :code_article, :numericality => { :message => l(:"article.error.validation_code_article_number")}
-  # validates :guarantee, :numericality => { :message => l(:"article.error.validation_guarantee_number")}
-  # validates :ans, :numericality => { :message => l(:"article.error.validation_ans_number")}
-  
   validate :code_article_is_blank
+  validate :code_provider_is_blank
   validate :name_provider_is_blank
-  # validate :guarantee_is_blank
-  # validate :ans_is_blank
   validate :email_regexp
   validate :phone_regexp
 
@@ -40,21 +36,16 @@ class GgArticle < ActiveRecord::Base
   def code_article_is_blank
  	  errors.add :base, l(:"article.error.validation_code_article_blank") if self.code_article.blank?
   end
+  
+  # Valida que el código del proveedor no se encuentre vacío.
+  def code_provider_is_blank
+    errors.add :base, l(:"article.error.validation_code_provider_blank") if self.code_provider.blank?
+  end
 
   # Valida que el nombre del proveedor no se encuentre vacío.
   def name_provider_is_blank
  	  errors.add :base, l(:"article.error.validation_name_provider_blank") if self.name_provider.blank?
   end
-
-  # Valida que la garantía no se encuentre vacío.
-  # def guarantee_is_blank
- 	#   errors.add :base, l(:"article.error.validation_guarantee_blank") if self.guarantee.blank?
-  # end
-
-  # Valida que el ANS no se encuentre vacío.
-  # def ans_is_blank
-  #   errors.add :base, l(:"article.error.validation_ans_blank") if self.ans.blank?
-  # end
 
   # Valida el email tenga la expresión regular correcta.
   def email_regexp

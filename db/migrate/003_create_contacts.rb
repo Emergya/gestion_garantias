@@ -1,5 +1,5 @@
 class CreateContacts < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :gg_contacts do |t|
     	t.column :gg_article_id, :integer
     	t.column :name, :string

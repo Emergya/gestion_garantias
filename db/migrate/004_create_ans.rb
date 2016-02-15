@@ -1,5 +1,5 @@
 class CreateAns < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :gg_ans do |t|
     	t.column :gg_article_id, :integer
     	t.column :priority, :string
