@@ -28,7 +28,11 @@ class GgArticle < ActiveRecord::Base
   end
 
   def show_contacts
-    self.gg_contacts.reject{|c| c.name.empty?}.collect{|c| "<b>"+c.name+"</b> <i>"+c.email+"</i> | "+c.phone+" | <hr>"}.join('')
+    if self.gg_contacts.empty?
+      "<i>No existe contactos para este articulo.</i><br><hr>"
+    else
+      self.gg_contacts.reject{|c| c.name.empty?}.collect{|c| "<b>"+c.name+"</b> <i>"+c.email+"</i> | "+c.phone+" | <hr>"}.join('')
+    end
   end
 
   private

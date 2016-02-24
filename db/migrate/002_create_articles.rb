@@ -5,8 +5,8 @@ class CreateArticles < ActiveRecord::Migration
     	t.column :code_article, :integer
       t.column :code_provider, :string
       t.column :name_provider, :string
-      t.column :guarantee_start, :datetime
-      t.column :guarantee_end, :datetime
+      t.column :guarantee_start, :datetime, null: true
+      t.column :guarantee_end, :datetime, null: true
     end
   end
 

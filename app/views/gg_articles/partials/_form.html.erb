@@ -19,19 +19,20 @@
 			 	<td><%= @file.code_file %></td>
 			 </tr>
 		</tbody>
-	</table>
+	</table><br>
 
-	<h2><%= l(:"article.article") %></h2>
+	<fieldset>
+		<legend><h2><%= l(:"article.article") %></h2></legend>
 		<%= f.hidden_field :gg_file_id, :value => @file.id %>
 
 		<div><%= f.label l(:"article.code_article")+": " %></div>
-		<%= f.text_field(:code_article, :size => 30) %>
+		<%= f.text_field(:code_article, :size => 33) %>
 
 		<div><%= f.label l(:"article.code_provider")+": " %></div>
-		<%= f.text_field(:code_provider, :size => 30) %>
+		<%= f.text_field(:code_provider, :size => 33) %>
 
 		<div><%= f.label l(:"article.name_provider")+": " %></div>
-		<%= f.text_field(:name_provider, :size => 30) %>
+		<%= f.text_field(:name_provider, :size => 33) %>
 
 		<!--- OCULTADO Fecha inicio y fecha de fin de garantía
 		<div><%# f.label l(:"article.guarantee_start")+": " %></div>
@@ -46,6 +47,7 @@
 			<div class="flash <%# @message[:type] %> message_guarantee" id="flash_<%# @message[:type] %>"><%# @message[:value] %></div>
 		<%# end %>
 		-->
+	</fieldset>
 </div>	
 
 <div class="splitcontentright articles_form_right">

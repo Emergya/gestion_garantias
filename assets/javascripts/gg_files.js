@@ -1,4 +1,12 @@
 $(document).ready(function(){
+	// Override the tooltip widget to show html content in tooltips
+	$.widget("ui.tooltip", $.ui.tooltip, {
+	   options: {
+	       content: function () {
+	           return $(this).prop('title');
+	       }
+	   }
+	});
 
 	$(".dialog_ans").dialog({
 		autoOpen: false,

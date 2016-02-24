@@ -2,9 +2,9 @@ require 'gg/application_helper_patch'
 
 Redmine::Plugin.register :gestion_garantias do
   name 'Redmine Gestion Garantias'
-  author 'mabalos'
-  description 'Permite almacenar los datos de los servicios tecnicos en cada expediente adjudicado por la Agencia de Educacion.'
-  version '0.0.1'
+  author 'jresinas, mabalos'
+  description 'Plugin que permite almacenar los datos de los servicios tecnicos en cada expediente adjudicado por la Agencia de Educacion.'
+  version '0.2.0'
   author_url 'http://www.emergya.es'
 
  project_module :gestion_garantias do
