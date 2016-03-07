@@ -77,7 +77,7 @@
 				<%= j.text_field(:priority, :class => "t_ans") %>
 				<p class="l_ans"><%= j.label l(:"ans.description")+": " %></p>
 				<%= j.text_area(:description, :class => "t_ans", :rows => 7) %>
-				<%= link_to '<span class="icon icon-del detele_text">'.html_safe+l(:text_delete), project_gg_file_gg_article_gg_an_path(@file,@article,@ans[i], :project_id => @project), :confirm => "¿Desea eliminar este artículo?", :method => :delete, class: "delete_ans_rails" if !@ans[i].new_record? %>
+				<%= link_to '<span class="icon icon-del detele_text">'.html_safe+l(:text_delete), project_gg_file_gg_article_gg_an_path(@file,@article,@ans[i], :project_id => @project), :confirm => l(:"ans.confirm_delete"), :method => :delete, class: "delete_ans_rails" if !@ans[i].new_record? %>
 				</fieldset>
 
 			<% end %>
@@ -98,7 +98,7 @@
 <%= render :partial => "gg_articles/partials/form_contact_create" %>
 
 <script>
-	// Ventana modal para crear nuevos usuarios
+	// Configuración de la ventana modal para crear nuevos usuarios.
 	$(".dialog_create_user").dialog({
 		autoOpen: false,
 		modal: true,

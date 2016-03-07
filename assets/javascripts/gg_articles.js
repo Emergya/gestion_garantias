@@ -60,12 +60,12 @@ $(document).ready(function(){
 
 			// Añadimos el nombre del contacto.
 			$(".contact_name_"+level).empty();
-			$(".contact_name_"+level).append("<label>Nombre: </label><br>");
+			$(".contact_name_"+level).append("<label><b>Nombre: </b></label><br>");
 			$(".contact_name_"+level).append(user.firstname+ " " + user.lastname);
 
 			// Añadimos el teléfono del contacto.
 			$(".contact_phone_"+level).empty();
-			$(".contact_phone_"+level).append("<label>Teléfono: </label><br>");
+			$(".contact_phone_"+level).append("<label><b>Teléfono: </b></label><br>");
 			$(".contact_phone_"+level).append(user.phone);
 
 			// Ocultamos el botón para poder crear el usuario.

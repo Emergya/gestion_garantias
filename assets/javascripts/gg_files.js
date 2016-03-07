@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	// Override the tooltip widget to show html content in tooltips
 	$.widget("ui.tooltip", $.ui.tooltip, {
 	   options: {
@@ -8,6 +9,10 @@ $(document).ready(function(){
 	   }
 	});
 
+	$(".tooltip_contacts").tooltip({
+		tooltipClass: "contact_tooltip"
+	});
+
 	$(".dialog_ans").dialog({
 		autoOpen: false,
 		minWidth: 700,
@@ -15,12 +20,8 @@ $(document).ready(function(){
 	});
 
 	$(".button_ans").click(function(){
-		$id = $(".button_ans").data("id");
+		$id = $(this).data("id");
 		$(".dialog_ans_"+$id).dialog("open");
-	});
-
-	$(".tooltip_contacts").tooltip({
-		tooltipClass: "contact_tooltip"
 	});
 
 });

@@ -8,18 +8,14 @@
   before_filter :set_file, only: [:new, :create, :edit, :update, :copy, :destroy]
 
   def new
-    @article = GgArticle.new
-    @contacts = []
-    (0..2).each do |i|
-      @contacts[i] = GgContact.new(:id => i) 
-    end
+    # @article = GgArticle.new
 
-    @ans = []
-    (0...1).each do |i|
-      @ans[i] = GgAns.new(:id => i) 
-    end
+    # @ans = []
+    # (0...1).each do |i|
+    #   @ans[i] = GgAns.new(:id => i) 
+    # end
 
-    @count_ans = 1
+    # @count_ans = 1
   end
 
   def create
@@ -58,17 +54,12 @@
   end
 
   def copy
-    old_article = GgArticle.find(params[:id])
-    @article = old_article.dup
-    @article.code_article = ""
+    # old_article = GgArticle.find(params[:id])
+    # @article = old_article.dup
+    # @article.code_article = ""
 
-    # @contacts = old_article.gg_contacts.order("level ASC").map(&:dup)
-    # (@contacts.count..2).each do |i|
-    #   @contacts[i] = GgContact.new(:id => i)
-    # end
-
-    @ans = old_article.gg_ans.map(&:dup)
-    @count_ans = @ans.count
+    # @ans = old_article.gg_ans.map(&:dup)
+    # @count_ans = @ans.count
   end
 
   def destroy
@@ -101,8 +92,6 @@
     # Generar contraseña random combinando letras (mayusculas y minusculas).
     chars = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
     @user.password  = (0...8).map { chars[rand(chars.length)] }.join
-
-
 
     if @user.save
       # Añadimos el usuario creado al grupo de 'Servicio Técnico'.

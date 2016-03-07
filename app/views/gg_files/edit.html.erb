@@ -19,8 +19,7 @@
    <th><%= l(:"article.name_provider") %></th>
    <!-- OCULTADO los campos de fecha de inicio y de fin de la garantia
    <th><%# l(:"article.guarantee_start") %></th>
-   <th><%# l(:"article.guarantee_end") %></th>
-    -->
+   <th><%# l(:"article.guarantee_end") %></th> -->
    <th><%= l(:"ans.ans") %></th>
    <th><%= l(:"article.permissions") %></th>
 
@@ -33,29 +32,28 @@
     	<td><%= article.name_provider %></td>
     	<!-- OCULTADO los campos de fecha de inicio y de fin de la garantia
       <td><%# article.guarantee_start %> </td>
-      <td><%# article.guarantee_end %> </td>
-      -->
+      <td><%# article.guarantee_end %> </td> -->
     	<td><a href="#" class="button_ans" data-id="<%= article.id %>">Consultar</a></td>
     	<td>
     		<%= link_to '<span class="icon icon-edit">'.html_safe+l(:text_edit), edit_project_gg_file_gg_article_path(@file, article, :project_id => @project) %>
-        <%= link_to '<span class="icon icon-copy">'.html_safe+l(:text_copy), copy_project_gg_file_gg_article_path(@file, article, :project_id => @project) %>
-        <%= link_to '<span class="icon icon-del">'.html_safe+l(:text_delete), project_gg_file_gg_article_path(@file,article, :project_id => @project), :confirm => "¿Desea eliminar este artículo?", :method => :delete %>
+        <%# link_to '<span class="icon icon-copy">'.html_safe+l(:text_copy), copy_project_gg_file_gg_article_path(@file, article, :project_id => @project) %>
+        <%= link_to '<span class="icon icon-del">'.html_safe+l(:text_delete), project_gg_file_gg_article_path(@file,article, :project_id => @project), :confirm => l(:"article.confirm_delete"), :method => :delete %>
       </td>
       <div class="dialog_ans dialog_ans_<%= article.id.to_s %>" title="ANS">
-
-          <% if !@result_ans[article.id].nil? %>
-            <hr>
-            <% @result_ans[article.id].each do |ans| %>
-              <p class="dialog_ans_title">Prioridad:</p>
-              <p><%= ans[:priority] %></p>
-              <p class="dialog_ans_title">Descripción:</p>
-              <p><%= ans[:description] %><p>
-            <hr>
-            <% end %> 
+          <% if !article.gg_ans.empty? %>
+            <% article.gg_ans.each do |ans| %>
+              <hr>
+                <p class="dialog_ans_title"><%= l(:"ans.priority") %>:</p>
+                <p><%= ans[:priority] %></p>
+                <p class="dialog_ans_title"><%= l(:"ans.description") %>:</p>
+                <p><%= ans[:description] %></p>
+              <hr>
+            <% end %>
           <% else %>
-            No existe ningún ANS para este artículo.
+            <hr>
+              <p><i><center><%= l(:"ans.ans_empty") %></center></i></p>
+            <hr>
           <% end %>
-          
       <div>
     </tr>
     <% end %>

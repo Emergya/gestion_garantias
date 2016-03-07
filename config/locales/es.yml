@@ -85,9 +85,11 @@ es:
       new: "Añadir nuevo ANS"
       confirm_delete: "¿Desea eliminar este ANS?"
       notice_destroy: "ANS eliminado correctamente."
-
+      ans_empty: "No existe ningún ANS para este artículo."
+      
       error:
           action_destroy: "Error al intentar eliminar el ANS."
+
 
   gg_setting:
       custom_fields: "Campos personalizados"
