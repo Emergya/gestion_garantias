@@ -40,12 +40,32 @@
 	padding-left: 12px;
 }
 
+.div_contact_button{
+	float: left;
+	padding-top: 8px;
+	padding-bottom: 10px;
+	padding-left: 12px;
+}
+
 .div_contact_phone{
 	width: 95px;
 	float: left;
 	padding-top: 8px;
 	padding-bottom: 10px;
 	padding-left: 12px;
+}
+
+.notice_create_user{
+	width: 100%;
+	margin-left: 10px;
+	margin-top: -5px;
+	margin-bottom: 0px;
+	float: left;
+	color: red;
+}
+
+.l_contact{
+	font-weight: bold;
 }
 
 .l_contact, .l_ans{
@@ -87,4 +107,29 @@ a.delete_ans{
 
 .delete_text{
 	padding-top: 5px !important;
+}
+
+.btn_create_contact{
+	margin-top: 15px;
+}
+
+/* Modal de creación de usuarios */
+.dialog_user_content{
+	margin-bottom: 10px;
+}
+
+.dialog_user_label{
+	width: 150px;
+	padding-top: 2px;
+	float: left;
+}
+
+#dialog_user_btn_create{
+	float: left;
+	margin-right: 10px;
+}
+
+.dialog_user_msg_error{
+	color: red;
+	padding-top: 3px;
 }

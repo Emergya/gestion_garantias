@@ -13,4 +13,10 @@ RedmineApp::Application.routes.draw do
 			end
 		end
 	end
+
+	# Ruta para comprobar si existe un usuario con un determinado e-mail a través de AJAX
+	get '/find_user', to: 'gg_articles#find_user', as: 'find_user'
+
+	# Ruta para crear un usuario mediante el modal a través de AJAX
+	get '/modal_create_user', to: 'gg_articles#modal_create_user', as: 'modal_create_user'
 end

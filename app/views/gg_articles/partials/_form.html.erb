@@ -1,3 +1,5 @@
+<div class="flash" style="display: none;"></div>
+
 <div id="prueba">
 <%= csrf_meta_tag %>
 <% content_for :header_tags do %>
@@ -53,28 +55,13 @@
 <div class="splitcontentright articles_form_right">
 	<fieldset class="f_contacts">
 		<legend><h2><%= l(:"contact.contacts") %></h2></legend>
-		<% (0..2).each do |i| %>
-			<%= f.fields_for :gg_contacts, @contacts[i] do |j| %>
-				<fieldset class="f_level">
-					<legend> <%= l(:"contact.level") %> <%= i+1 %></legend>
-					<%= j.hidden_field :level, :value => i+1 %>
+			<%= f.hidden_field :level_1 %>
+			<%= f.hidden_field :level_2 %>
+			<%= f.hidden_field :level_3 %>
 
-					<div class="div_contact">
-						<p class="l_contact"><%= j.label l(:"contact.name")+": " %></p>
-						<%= j.text_field(:name, :size => 30) %>
-					</div>
-					<div class="div_contact_phone">
-						<p class="l_contact"><%= j.label l(:"contact.phone")+": " %></p>
-						<%= j.text_field(:phone, :size => 9) %>
-					</div>
-
-					<div class="div_contact">
-						<p class="l_contact"><%= j.label l(:"contact.email")+": " %></p>
-						<%= j.text_field(:email, :size => 30) %>
-					</div>
-				</fieldset>
-			<% end %>
-		<% end %>
+			<%= render :partial => "gg_articles/partials/form_contact", :locals => {:user => @article.first_level, :level => 1 } %>
+			<%= render :partial => "gg_articles/partials/form_contact", :locals => {:user => @article.second_level, :level => 2 } %>
+			<%= render :partial => "gg_articles/partials/form_contact", :locals => {:user => @article.third_level, :level => 3 } %>
 	</fieldset>
 </div>
 	
@@ -107,3 +94,17 @@
 <% end %>
 <%= button_to l(:"text_back"), edit_project_gg_file_path(@file, :project_id => @project), class: "form_articles_button form_articles_button_back", :method => :get %>
 </div>
+
+<%= render :partial => "gg_articles/partials/form_contact_create" %>
+
+<script>
+	// Ventana modal para crear nuevos usuarios
+	$(".dialog_create_user").dialog({
+		autoOpen: false,
+		modal: true,
+		minWidth: 500,
+		close: function(event, ui){
+			$('.in_use').removeClass('in_use');
+		}
+	});
+</script>

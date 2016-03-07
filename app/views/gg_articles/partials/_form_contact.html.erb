@@ -1,0 +1,24 @@
+<fieldset class="f_level">
+	<legend><u><%= l(:"contact.level") %> <%= level %></u></legend>
+			<div class="div_contact contact_email_<%= level %>">
+				<p class="l_contact"><%= label_tag l(:"contact.email")+": " %></p>
+				<%= text_field_tag :email, user.present? ? user.mail : nil, { data: {level: level}, :size => 30, class: "input_contact_email input_contact_email_"+level.to_s } %>
+			</div>
+			<div class="contact_exist_<%= level %>" style="<%= 'display:none;' if !user.present? %>" >
+				<div class="div_contact contact_name_<%= level %>">
+					<p class="l_contact"><%= label_tag l(:"contact.name")+": " %></p>
+					<%= user.firstname + " " + user.lastname if user.present? %>
+				</div>
+
+				<div class="div_contact_phone contact_phone_<%= level %>">
+					<p class="l_contact"><%= label_tag l(:"contact.phone")+": " %></p>
+					<%= user.phone if user.present? %>
+				</div>
+			</div>
+			<div class="contact_not_exist_<%= level %>" style="display:none;">
+				<div class="div_contact_button div_contact_button_<%= level %>">
+				<%= button_tag "Crear usuario", { data: {level: level}, class: "btn_create_contact" } %>
+				</div>
+				<p class='notice_create_user'><i><%= l(:"contact.email_not_found") %></i></p>
+			</div>
+</fieldset>

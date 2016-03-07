@@ -1,0 +1,17 @@
+<fieldset>
+	<legend><b><%= l(:"gg_setting.custom_fields") %></b></legend>
+		<%= l(:"gg_setting.contact_phone") %>: &nbsp;
+		<%= select_tag 'settings[gg_field_user_phone]',
+			options_from_collection_for_select(UserCustomField.all, :id, :name, @settings['gg_field_user_phone']),
+			:include_blank => true
+		%>
+</fieldset>
+
+<fieldset>
+	<legend><b><%= l(:"gg_setting.groups") %></b></legend>
+		<%= l(:"gg_setting.group_st") %>: &nbsp;
+		<%= select_tag 'settings[gg_group_provider_contacts]',
+			options_from_collection_for_select(Group.all, :id, :name, @settings['gg_group_provider_contacts']),
+			:include_blank => true
+		%>
+</fieldset>

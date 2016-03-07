@@ -1,8 +1,8 @@
-class GgArticlesController < ApplicationController
+﻿class GgArticlesController < ApplicationController
   unloadable
 
   menu_item :config_gestion_garantias 
-  before_filter :find_project_by_project_id, :authorize
+  before_filter :find_project_by_project_id, :authorize, :except => [:find_user, :modal_create_user]
 
   before_filter :set_article, only: [:edit, :update, :destroy]
   before_filter :set_file, only: [:new, :create, :edit, :update, :copy, :destroy]
@@ -35,10 +35,7 @@ class GgArticlesController < ApplicationController
   end
 
   def edit
-    @contacts = @article.gg_contacts.order("level ASC")
-    (@contacts.count..2).each do |i|
-      @contacts[i] = GgContact.new(:id => i)
-    end
+    @contacts = @article.users
 
     @ans = @article.gg_ans
     @count_ans = @article.gg_ans.count
@@ -65,10 +62,10 @@ class GgArticlesController < ApplicationController
     @article = old_article.dup
     @article.code_article = ""
 
-    @contacts = old_article.gg_contacts.order("level ASC").map(&:dup)
-    (@contacts.count..2).each do |i|
-      @contacts[i] = GgContact.new(:id => i)
-    end
+    # @contacts = old_article.gg_contacts.order("level ASC").map(&:dup)
+    # (@contacts.count..2).each do |i|
+    #   @contacts[i] = GgContact.new(:id => i)
+    # end
 
     @ans = old_article.gg_ans.map(&:dup)
     @count_ans = @ans.count
@@ -82,6 +79,51 @@ class GgArticlesController < ApplicationController
     end
 
     redirect_to edit_project_gg_file_path(@file, :project_id => @project)
+  end
+
+  def find_user
+    user = User.where("mail = ?", params[:user_email]).select([:id, :firstname, :lastname, :mail]).first
+
+    respond_to do |format|
+      user[:phone] = user.phone if user.present? 
+      format.json { render json: {:user => user.present? ? user.attributes : nil, :user_present => user.present? ? true : false} }
+    end
+  end
+
+  def modal_create_user
+    # Creación del usuario.
+    @user           = User.new
+    @user.login     = params[:login]
+    @user.firstname = params[:firstname]
+    @user.lastname  = params[:lastname]
+    @user.mail      = params[:mail]
+
+    # Generar contraseña random combinando letras (mayusculas y minusculas).
+    chars = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+    @user.password  = (0...8).map { chars[rand(chars.length)] }.join
+
+
+
+    if @user.save
+      # Añadimos el usuario creado al grupo de 'Servicio Técnico'.
+      group = Group.find Setting.plugin_gestion_garantias[:gg_group_provider_contacts]
+      group.users << @user
+
+      # Añadimos el número de telefono del usuario.
+      @user.custom_value_for(Setting.plugin_gestion_garantias[:gg_field_user_phone]).value = params[:phone]
+      @user.custom_value_for(Setting.plugin_gestion_garantias[:gg_field_user_phone]).save
+      
+      # Envio al usuario de que la cuenta ha sido creada. 
+      Mailer.account_information(@user, @user.password).deliver
+
+      respond_to do |format|
+        format.json { render json: { msg: "Usuario creado con éxito.", type: "notice"} }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { msg: @user.get_error_message, type: "error"} }
+      end
+    end
   end
 
   private

@@ -1,18 +1,24 @@
-class GgArticle < ActiveRecord::Base
+﻿class GgArticle < ActiveRecord::Base
   unloadable
   
   belongs_to :gg_file
   has_many :gg_contacts, :dependent => :destroy
   has_many :gg_ans, :class_name => 'GgAns', :dependent => :destroy
-  accepts_nested_attributes_for :gg_contacts
   accepts_nested_attributes_for :gg_ans
+
+  belongs_to :first_level, :class_name => 'User', :foreign_key => :level_1
+  belongs_to :second_level, :class_name => 'User', :foreign_key => :level_2
+  belongs_to :third_level, :class_name => 'User', :foreign_key => :level_3
 
   validates :code_article, :numericality => { :message => l(:"article.error.validation_code_article_number")}
   validate :code_article_is_blank
   validate :code_provider_is_blank
   validate :name_provider_is_blank
-  validate :email_regexp
-  validate :phone_regexp
+
+
+  def users
+    [first_level,second_level,third_level]
+  end
 
   # Genera mensaje de error
   def get_error_message
@@ -27,11 +33,12 @@ class GgArticle < ActiveRecord::Base
     error_msg
   end
 
+  # Muestra los contactos del articulo en el dialog.
   def show_contacts
-    if self.gg_contacts.empty?
-      "<i>No existe contactos para este articulo.</i><br><hr>"
+    if self.users[0].nil? && self.users[1].nil? && self.users[2].nil?
+      "<i>"+l(:"contact.empty")+"</i><br><hr>"
     else
-      self.gg_contacts.reject{|c| c.name.empty?}.collect{|c| "<b>"+c.name+"</b> <i>"+c.email+"</i> | "+c.phone+" | <hr>"}.join('')
+      self.users.reject{|c| c.nil?}.collect{|c| "<div style='float: left; width: 200px'><b>"+c.firstname+" "+c.lastname+"</b></div> <div style='float: left; width: 250px; margin-left: 10px;'> <i>"+c.mail+"</i></div> | "+(c.phone.present? ? c.phone : "Sin número de contacto.")+" | <hr>"}.join('')
     end
   end
 
@@ -49,30 +56,6 @@ class GgArticle < ActiveRecord::Base
   # Valida que el nombre del proveedor no se encuentre vacío.
   def name_provider_is_blank
  	  errors.add :base, l(:"article.error.validation_name_provider_blank") if self.name_provider.blank?
-  end
-
-  # Valida el email tenga la expresión regular correcta.
-  def email_regexp
-    validation_email = false
-
-    (0..2).each do |i|
-      if validation_email == false && !self.gg_contacts[i].email.blank? && /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/.match(self.gg_contacts[i].email).nil?
-          errors.add :base, l(:"contact.error.validation_email_regexp") 
-          validation_email = true
-      end
-    end
-  end
-
-  # Valida el número de teléfono tenga la expresión regular correcta:
-  def phone_regexp
-    validation_phone = false
-
-    (0..2).each do |i|
-      if validation_phone == false && !self.gg_contacts[i].phone.blank? && /^[0-9]{2,3}-? ?[0-9]{2} ?[0-9]{2} ?[0-9]{2}$/.match(self.gg_contacts[i].phone).nil?
-         errors.add :base, l(:"contact.error.validation_phone_regexp") 
-         validation_phone = true
-      end
-    end
   end
 
 end

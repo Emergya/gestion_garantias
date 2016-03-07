@@ -64,10 +64,18 @@ es:
       notice_destroy: "Contacto eliminado correctamente."
       confirm_delete: "¿Desea eliminar este contacto?"
 
+      empty: "No existen contactos para este articulo."
+      email_not_found: "No existe ningún usuario con el e-mail indicado, debe crearlo si desea almacenarlo como un contacto para este artículo."
+      create: "Crear usuario"
+      user: "Usuario"
+      surname: "Apellidos"
+      e-mail: "Dirección de correo"
+
       error:
           action_destroy: "Error al intentar eliminar el contacto."
           validation_email_regexp: "El email debe de tener el formato correcto, por ejemplo: example@email.com"
           validation_phone_regexp: "El número de teléfono debe de tener el formato correcto, por ejemplo: 900 10 20 30"
+          email_not_valid: "Dirección de correo no válido."
 
   ans:
       ans: "ANS"
@@ -80,3 +88,9 @@ es:
 
       error:
           action_destroy: "Error al intentar eliminar el ANS."
+
+  gg_setting:
+      custom_fields: "Campos personalizados"
+      contact_phone: "Teléfono de contacto"
+      groups: "Agrupaciones"
+      group_st: "Grupo personalizado donde se almacenarán los contactos del 'Servicio Técnico'"

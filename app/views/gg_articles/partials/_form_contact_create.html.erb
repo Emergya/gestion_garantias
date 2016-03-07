@@ -1,0 +1,35 @@
+<div class="dialog_create_user" title="Registro de un nuevo usuario">
+	<%= form_tag :user, {:id => "formModalUser"} do %>
+		<div class="div_dialog_create_user">
+			<hr>
+			<div class="dialog_user_content">
+				<div class="dialog_user_label"><b><%= l(:"contact.e-mail") %>* </b></div> 
+				<div id="dialog_user_email"></div>
+				<%= hidden_field_tag :mail %>
+			</div>
+
+			<div class="dialog_user_content">
+				<div class="dialog_user_label"><b><%= l(:"contact.user") %>* </b></div>
+				<%= text_field_tag :login, nil, size: 20, class: "dialog_user_name" %><br>
+			</div>
+
+			<div class="dialog_user_content">
+				<div class="dialog_user_label"><b><%= l(:"contact.name") %>* </b></div>
+				<%= text_field_tag :firstname, nil, size: 25, class: "dialog_user_firstname" %>
+			</div>
+
+			<div class="dialog_user_content">
+				<div class="dialog_user_label"><b><%= l(:"contact.surname") %>* </b></div>
+				<%= text_field_tag :lastname, nil, size: 25, class: "dialog_user_lastname" %>
+			</div>
+
+			<div class="dialog_user_content">
+				<div class="dialog_user_label"><b><%= l(:"contact.phone") %> </b></div>
+				<%= text_field_tag :phone, nil, size: 20, class: "dialog_user_lastname" %>
+			</div>
+			<hr>
+
+			<p><button type="submit" id="dialog_user_btn_create"><%= l(:"contact.create")%></button><div class="dialog_user_msg_error" style="display:none;"><%= l(:"contact.error.email_not_valid") %></div></p>
+		</div>
+	<% end %>
+</div>
