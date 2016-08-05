@@ -32,7 +32,12 @@ class GgFilesController < ApplicationController
   end
 
   def edit
-    @articles = @file.gg_articles.order("code_article ASC")
+    limit = params[:per_page].present? ? params[:per_page].to_i : 29
+    page_num = params[:page].present? ? params[:page].to_i : 0
+    offset = params[:page].present? ? (page_num * limit ) : 0
+    @articles = @file.gg_articles.order("code_article ASC").offset(offset).limit(limit)
+    @articles_count = @file.gg_articles.order("code_article ASC").count
+    @articles_pages = Paginator.new @articles_count, limit, params[:page]
   end
 
   def update 
