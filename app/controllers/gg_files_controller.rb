@@ -7,7 +7,12 @@ class GgFilesController < ApplicationController
   before_filter :set_file, only: [:edit, :update, :destroy]
 
   def index
-  	@files = GgFile.order("identity_file ASC")
+    limit = params[:per_page].present? ? params[:per_page].to_i : 29
+    page_num = params[:page].present? ? params[:page].to_i : 0
+    offset = params[:page].present? ? (page_num * limit ) : 0
+  	@files = GgFile.order("identity_file ASC").offset(offset).limit(limit)
+    @files_count = GgFile.order("identity_file ASC").count
+    @files_pages = Paginator.new @files_count, limit, params[:page]
   end
 
   def new
