@@ -3,13 +3,12 @@ class GgFilesController < ApplicationController
 
   menu_item :config_gestion_garantias 
   before_filter :find_project_by_project_id, :authorize
-
   before_filter :set_file, only: [:edit, :update, :destroy]
 
   def index
     limit = params[:per_page].present? ? params[:per_page].to_i : 29
     page_num = params[:page].present? ? params[:page].to_i : 0
-    offset = params[:page].present? ? (page_num * limit ) : 0
+    offset = params[:page].present? ? ((page_num-1) * limit ) : 0
   	@files = GgFile.order("identity_file ASC").offset(offset).limit(limit)
     @files_count = GgFile.order("identity_file ASC").count
     @files_pages = Paginator.new @files_count, limit, params[:page]
@@ -34,7 +33,7 @@ class GgFilesController < ApplicationController
   def edit
     limit = params[:per_page].present? ? params[:per_page].to_i : 29
     page_num = params[:page].present? ? params[:page].to_i : 0
-    offset = params[:page].present? ? (page_num * limit ) : 0
+    offset = params[:page].present? ? ((page_num-1) * limit ) : 0
     @articles = @file.gg_articles.order("code_article ASC").offset(offset).limit(limit)
     @articles_count = @file.gg_articles.order("code_article ASC").count
     @articles_pages = Paginator.new @articles_count, limit, params[:page]
