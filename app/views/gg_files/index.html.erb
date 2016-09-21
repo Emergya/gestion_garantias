@@ -3,6 +3,17 @@
     <%# link_to '<span class="icon icon-add">'.html_safe+l(:"file.new"), :controller => :gg_files, :action => :new, :project_id => @project %>
 </div> 
 -->
+
+<div class="contextual">
+     <%= form_tag({:controller => 'gg_files', :action => 'index'}, :method => :get ) do %>
+        <%= label_tag(:search_file, "Busqueda: ") %>
+        <%= text_field_tag(:search_file) %>
+        <%= radio_button_tag(:type_search_file, "identity_file") %><%= label_tag(:type_id_file, "Identificador") %>
+        <%= radio_button_tag(:type_search_file, "code_file") %><%= label_tag(:type_cod_file, "Código exp.") %>
+        <%= submit_tag("Buscar") %>
+     <% end %>
+</div> 
+
 <h2><%= l(:"file.files") %></h2>
 
 <table class="list">

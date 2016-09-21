@@ -9,8 +9,22 @@ class GgFilesController < ApplicationController
     limit = params[:per_page].present? ? params[:per_page].to_i : 29
     page_num = params[:page].present? ? params[:page].to_i : 0
     offset = params[:page].present? ? ((page_num-1) * limit ) : 0
-  	@files = GgFile.order("identity_file ASC").offset(offset).limit(limit)
-    @files_count = GgFile.order("identity_file ASC").count
+
+    # Motor de busqueda
+    if params[:search_file].present? && params[:type_search_file].present?
+      if GgFile.where("#{params[:type_search_file]} = ?", params[:search_file]).present?
+        @files = GgFile.where("#{params[:type_search_file]} = ?", params[:search_file]).order("identity_file ASC").offset(offset).limit(limit)
+        @files_count = GgFile.where("#{params[:type_search_file]} = ?", params[:search_file]).order("identity_file ASC").count
+      else
+        flash[:error] = "No se ha encontrado ningun resultado."
+        redirect_to action: 'index'
+      end
+    # En el caso de que no se haya realizado una busqueda.
+    else
+    	@files = GgFile.order("identity_file ASC").offset(offset).limit(limit)
+      @files_count = GgFile.order("identity_file ASC").count
+    end
+
     @files_pages = Paginator.new @files_count, limit, params[:page]
   end
 
