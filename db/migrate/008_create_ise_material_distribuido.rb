@@ -16,10 +16,10 @@ class CreateIseMaterialDistribuido < ActiveRecord::Migration
       t.column :lot, :string
       t.column :code_action, :string
       t.column :action, :string
-      t.column :date_deliver, :datetime
+      t.column :date_deliver, :date
       t.column :order_number, :string
-      t.column :date_guarantee, :datetime
-      t.column :date_order, :datetime
+      t.column :date_guarantee, :date
+      t.column :date_order, :date
       t.column :serial_number, :string
       t.column :device, :string
     end
