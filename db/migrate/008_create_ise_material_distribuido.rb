@@ -1,31 +1,31 @@
 class CreateIseMaterialDistribuido < ActiveRecord::Migration
   def self.up
-    create_table :ISE_MATERIAL_DISTRIBUIDO_GAR do |t|
-      t.column :CODIGO_CENTRO, :string
-      t.column :CENTRO, :string
-      t.column :SEDE, :string
-      t.column :LOCALIDAD, :string
-      t.column :CODIGO_TIPO_MATERIAL, :string
-      t.column :TIPO_MATERIAL, :string
-      t.column :CODIGO_ARTICULO, :string
-      t.column :ARTICULO, :string
-      t.column :CODIGO_PROVEEDOR, :string
-      t.column :PROVEEDOR, :string
-      t.column :CODIGO_EXPEDIENTE, :string
-      t.column :ADJ, :string
-      t.column :LOTE, :string
-      t.column :CODIGO_ACTUACION, :string
-      t.column :ACTUACION, :string
-      t.column :FECHA_ENTREGA, :datetime
-      t.column :NUMERO_ORDEN, :string
-      t.column :FECHA_GARANTIA, :datetime
-      t.column :FECHA_ORDEN, :datetime
-      t.column :NUMERO_SERIE, :string
-      t.column :APARATO, :string
+    create_table :gg_materials do |t|
+      t.column :code_center, :string
+      t.column :center, :string
+      t.column :headquarters, :string
+      t.column :location, :string
+      t.column :code_type_material, :string
+      t.column :type_material, :string
+      t.column :code_article, :string
+      t.column :article, :string
+      t.column :code_provider, :string
+      t.column :provider, :string
+      t.column :code_file, :string
+      t.column :adj, :string
+      t.column :lot, :string
+      t.column :code_action, :string
+      t.column :action, :string
+      t.column :date_deliver, :datetime
+      t.column :order_number, :string
+      t.column :date_guarantee, :datetime
+      t.column :date_order, :datetime
+      t.column :serial_number, :string
+      t.column :device, :string
     end
   end
 
   def self.down
-    drop_table :ISE_MATERIAL_DISTRIBUIDO_GAR
+    drop_table :gg_materials
   end
 end
