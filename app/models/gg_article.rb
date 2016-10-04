@@ -1,7 +1,7 @@
 ﻿class GgArticle < ActiveRecord::Base
   unloadable
   
-  belongs_to :gg_file
+  has_and_belongs_to_many :gg_files, :join_table => :gg_files_articles
   has_many :gg_contacts, :dependent => :destroy
   has_many :gg_ans, :class_name => 'GgAns', :dependent => :destroy
   accepts_nested_attributes_for :gg_ans
