@@ -33,6 +33,7 @@ es:
       articles: "Artículos"
       new: "Nuevo artículo"
       code_article: "Código de artículo"
+      code_type_material: "Tipo de artículo"
       code_provider: "Código del proveedor"
       name_provider: "Nombre del proveedor"
       guarantee_start: "Inicio de garantía"
