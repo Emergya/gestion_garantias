@@ -38,20 +38,6 @@
 
 		<div><%= f.label l(:"article.name_provider")+": " %></div>
 		<%= f.text_field(:name_provider, :size => 33) %>
-
-		<!--- OCULTADO Fecha inicio y fecha de fin de garantía
-		<div><%# f.label l(:"article.guarantee_start")+": " %></div>
-		<%# f.text_field(:guarantee_start, :size => 8, :value => @article.guarantee_start.nil? ? "" : @article.guarantee_start.strftime("%d-%m-%Y")) %>
-		<%# calendar_for_es('gg_article_guarantee_start')%>
-
-		<div><%# f.label l(:"article.guarantee_end")+": " %></div>
-		<%# f.text_field(:guarantee_end, :size => 8, :value => @article.guarantee_end.nil? ? "" : @article.guarantee_end.strftime("%d-%m-%Y")) %>
-		<%# calendar_for_es('gg_article_guarantee_end')%>
-
-		<%# if !@message.nil? %>
-			<div class="flash <%# @message[:type] %> message_guarantee" id="flash_<%# @message[:type] %>"><%# @message[:value] %></div>
-		<%# end %>
-		-->
 	</fieldset>
 </div>	
 

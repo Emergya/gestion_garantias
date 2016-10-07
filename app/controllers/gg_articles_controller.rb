@@ -35,12 +35,6 @@
 
     @ans = @article.gg_ans
     @count_ans = @article.gg_ans.count
-
-    # if Date.current >= @article.guarantee_start.to_date && Date.current <= @article.guarantee_end.to_date
-    #   @message = {:type => "notice", :value => l(:"article.message_guarantee")}
-    # else
-    #   @message = {:type => "error", :value => l(:"article.message_guarantee_out")}
-    # end
   end
 
   def update 

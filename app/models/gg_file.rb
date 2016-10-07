@@ -1,7 +1,7 @@
 ﻿class GgFile < ActiveRecord::Base
   unloadable
 
-  has_and_belongs_to_many :gg_articles, :join_table => :gg_files_articles
+  has_many :gg_articles, :dependent => :destroy
 
   validate :identity_file_is_blank
   validate :identity_file_is_number

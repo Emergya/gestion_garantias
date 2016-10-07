@@ -5,7 +5,6 @@ es:
   text_copy: "Copiar"
   text_delete: "Eliminar"
   field_code_article: ""
-  field_guarantee: ""
   field_ans: ""
 
   file:
@@ -36,16 +35,12 @@ es:
       code_type_material: "Tipo de artículo"
       code_provider: "Código del proveedor"
       name_provider: "Nombre del proveedor"
-      guarantee_start: "Inicio de garantía"
-      guarantee_end: "Fin de garantía"
       permissions: "Permisos"
       new: "Nuevo artículo"
       notice_create: "Artículo creado correctamente."
       notice_edit: "Artículo modificado correctamente."
       notice_destroy: "Artículo eliminado correctamente."
       confirm_delete: "¿Desea eliminar este artículo?"
-      message_guarantee: "Se encuentra en garantia"
-      message_guarantee_out: "No se encuentra en garantia"
       error:
           action_destroy: "Error al intentar eliminar el artículo."
           validation_code_article_blank: "El código del artículo no puede estar vacío."
