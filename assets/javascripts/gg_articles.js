@@ -46,7 +46,7 @@ $(document).ready(function(){
 		// En caso de que no exista ese correo, damos la posibilidad de poder crear el usuario.
 		if($.isEmptyObject(user)){
 			// Eliminamos el value el campo asociado al formulario en el caso de que exista.
-			$("#gg_article_level_"+level).val(""); //removeAttr("value");
+			$("#gg_article_contacts_attributes_level_"+level).val(""); //removeAttr("value");
 
 			// Ocultamos el bloque de atributos del contacto.
 			$(".contact_exist_"+level).hide();
@@ -72,7 +72,7 @@ $(document).ready(function(){
 			$(".contact_not_exist_"+level).hide();
 
 			// Añadimos la ID del usuario al campo del formulario.
-			$("#gg_article_level_"+level).val(user.id);
+			$("#gg_article_contacts_attributes_level_"+level).val(user.id);
 		}
 	}
 

@@ -11,9 +11,9 @@ module GG
       base.class_eval do
         unloadable # Send unloadable so it will be reloaded in development
 
-        has_many :first_level, :foreign_key => :level_1, :class_name => 'GgArticle'
-        has_many :second_level, :foreign_key => :level_2, :class_name => 'GgArticle'
-        has_many :third_level, :foreign_key => :level_3, :class_name => 'GgArticle'
+        has_many :first_level, :foreign_key => :level_1, :class_name => 'GgContact'
+        has_many :second_level, :foreign_key => :level_2, :class_name => 'GgContact'
+        has_many :third_level, :foreign_key => :level_3, :class_name => 'GgContact'
 
       end
     end

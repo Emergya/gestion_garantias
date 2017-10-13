@@ -2,22 +2,28 @@
   unloadable
   
   belongs_to :gg_file
-  has_many :gg_contacts, :dependent => :destroy
+  has_one :contacts, :dependent => :destroy, :class_name => "GgContact", :foreign_key => "article_id", :primary_key => "article_id", :autosave => true
   has_many :gg_ans, :class_name => 'GgAns', :dependent => :destroy
-  accepts_nested_attributes_for :gg_ans
-
-  belongs_to :first_level, :class_name => 'User', :foreign_key => :level_1
-  belongs_to :second_level, :class_name => 'User', :foreign_key => :level_2
-  belongs_to :third_level, :class_name => 'User', :foreign_key => :level_3
+  accepts_nested_attributes_for :gg_ans, :contacts
 
   validates :code_article, :numericality => { :message => l(:"article.error.validation_code_article_number")}
   validate :code_article_is_blank
   validate :code_provider_is_blank
   validate :name_provider_is_blank
+  validates :article_id, presence: true
 
+  # Si no existen los contactos del artículo, los inicializa
+  def contacts_with_initialize
+    contacts_without_initialize || build_contacts
+  end
+  alias_method_chain :contacts, :initialize
 
   def users
-    [first_level,second_level,third_level]
+    if contacts.present?
+      [contacts.first_level, contacts.second_level, contacts.third_level]
+    else
+      [nil, nil, nil]
+    end
   end
 
   # Genera mensaje de error

@@ -44,16 +44,17 @@
 <div class="splitcontentright articles_form_right">
 	<fieldset class="f_contacts">
 		<legend><h2><%= l(:"contact.contacts") %></h2></legend>
-			<%= f.hidden_field :level_1 %>
-			<%= f.hidden_field :level_2 %>
-			<%= f.hidden_field :level_3 %>
+		<%= f.fields_for :contacts, @article.contacts do |f2| %>
+			<%= f2.hidden_field :level_1 %>
+			<%= f2.hidden_field :level_2 %>
+			<%= f2.hidden_field :level_3 %>
 
-			<%= render :partial => "gg_articles/partials/form_contact", :locals => {:user => @article.first_level, :level => 1 } %>
-			<%= render :partial => "gg_articles/partials/form_contact", :locals => {:user => @article.second_level, :level => 2 } %>
-			<%= render :partial => "gg_articles/partials/form_contact", :locals => {:user => @article.third_level, :level => 3 } %>
+			<%= render :partial => "gg_articles/partials/form_contact", :locals => {:user => @article.contacts.first_level, :level => 1 } %>
+			<%= render :partial => "gg_articles/partials/form_contact", :locals => {:user => @article.contacts.second_level, :level => 2 } %>
+			<%= render :partial => "gg_articles/partials/form_contact", :locals => {:user => @article.contacts.third_level, :level => 3 } %>
+		<% end %>
 	</fieldset>
 </div>
-	
 	<div style="clear: both"></div>
 	
 	<fieldset>
