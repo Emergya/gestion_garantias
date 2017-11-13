@@ -1,7 +1,7 @@
 ﻿class GgFile < ActiveRecord::Base
   unloadable
 
-  has_many :gg_articles, :dependent => :destroy
+  has_many :gg_articles, :dependent => :destroy, :primary_key => :identity_file, :foreign_key => :gg_file_id
 
   validate :identity_file_is_blank
   validate :identity_file_is_number
