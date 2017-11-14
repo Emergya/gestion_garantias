@@ -25,7 +25,7 @@
 
 	<fieldset>
 		<legend><h2><%= l(:"article.article") %></h2></legend>
-		<%= f.hidden_field :gg_file_id, :value => @file.id %>
+		<%= f.hidden_field :gg_file_id, :value => @file.identity_file %>
 
 		<div><%= f.label l(:"article.code_article")+": " %></div>
 		<%= f.text_field(:code_article, :size => 33) %>
