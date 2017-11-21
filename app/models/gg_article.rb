@@ -1,7 +1,7 @@
 ﻿class GgArticle < ActiveRecord::Base
   unloadable
   
-  belongs_to :gg_file, :foreign_key => :identity_file
+  belongs_to :gg_file, :primary_key => :identity_file, :foreign_key => :gg_file_id
   has_one :contacts, :dependent => :destroy, :class_name => "GgContact", :foreign_key => "article_id", :primary_key => "article_id", :autosave => true
   has_many :gg_ans, :class_name => 'GgAns', :dependent => :destroy, :foreign_key => "gg_article_id", :primary_key => "article_id"
   accepts_nested_attributes_for :gg_ans, :contacts
